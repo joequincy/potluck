@@ -11,6 +11,7 @@ class PotluckTest < Minitest::Test
     @roast_pork = Dish.new("Roast Pork", :entre)
     @cocktail_meatballs = Dish.new("Cocktail Meatballs", :entre)
     @candy_salad = Dish.new("Candy Salad", :dessert)
+    @bean_dip = Dish.new("Bean Dip", :appetizer)
   end
   def test_potluck_exists
     assert_instance_of Potluck, @potluck
@@ -39,4 +40,32 @@ class PotluckTest < Minitest::Test
     assert_equal [@roast_pork, @cocktail_meatballs], entres
     assert_equal [@candy_salad], desserts
   end
+  def test_menu_outputs_correct_contents
+    @potluck.add_dish(@couscous_salad)
+    @potluck.add_dish(@summer_pizza)
+    @potluck.add_dish(@roast_pork)
+    @potluck.add_dish(@cocktail_meatballs)
+    @potluck.add_dish(@candy_salad)
+    @potluck.add_dish(@bean_dip)
+    expectation = {
+      :appetizer => ["Bean Dip", "Couscous Salad", "Summer Pizza"],
+      :entres => ["Cocktail Meatballs", "Roast Pork"],
+      :desserts => ["Candy Salad"]
+    }
+    menu = @potluck.menu
+    assert_equal ["Bean Dip", "Couscous Salad", "Summer Pizza"], menu[:appetizers]
+    assert_equal ["Cocktail Meatballs", "Roast Pork"], menu[:entres]
+    assert_equal ["Candy Salad"], menu[:desserts]
+  end
+  def test_ratio_of_dish_type_to_total
+    @potluck.add_dish(@couscous_salad)
+    @potluck.add_dish(@summer_pizza)
+    @potluck.add_dish(@roast_pork)
+    @potluck.add_dish(@cocktail_meatballs)
+    @potluck.add_dish(@candy_salad)
+    @potluck.add_dish(@bean_dip)
+    assert_equal 50.0, @potluck.ratio(:appetizer)
+    assert_equal 33.3, @potluck.ratio(:entre)
+    assert_equal 16.6, @potluck.ratio(:dessert)
+  end    
 end

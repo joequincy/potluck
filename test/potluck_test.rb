@@ -48,7 +48,7 @@ class PotluckTest < Minitest::Test
     @potluck.add_dish(@candy_salad)
     @potluck.add_dish(@bean_dip)
     expectation = {
-      :appetizer => ["Bean Dip", "Couscous Salad", "Summer Pizza"],
+      :appetizers => ["Bean Dip", "Couscous Salad", "Summer Pizza"],
       :entres => ["Cocktail Meatballs", "Roast Pork"],
       :desserts => ["Candy Salad"]
     }
@@ -66,6 +66,6 @@ class PotluckTest < Minitest::Test
     @potluck.add_dish(@bean_dip)
     assert_equal 50.0, @potluck.ratio(:appetizer)
     assert_equal 33.3, @potluck.ratio(:entre)
-    assert_equal 16.6, @potluck.ratio(:dessert)
+    assert_equal 16.7, @potluck.ratio(:dessert)
   end
 end

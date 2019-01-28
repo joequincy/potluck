@@ -5,7 +5,7 @@ require './lib/potluck'
 
 class PotluckTest < Minitest::Test
   def setup
-    @potluck = Putluck.new("7-13-18")
+    @potluck = Potluck.new("7-13-18")
     @couscous_salad = Dish.new("Couscous Salad", :appetizer)
     @cocktail_meatballs = Dish.new("Cocktail Meatballs", :entre)
   end

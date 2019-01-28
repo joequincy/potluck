@@ -53,9 +53,9 @@ class PotluckTest < Minitest::Test
       :desserts => ["Candy Salad"]
     }
     menu = @potluck.menu
-    assert_equal ["Bean Dip", "Couscous Salad", "Summer Pizza"], menu[:appetizers]
-    assert_equal ["Cocktail Meatballs", "Roast Pork"], menu[:entres]
-    assert_equal ["Candy Salad"], menu[:desserts]
+    assert_equal expectation[:appetizers], menu[:appetizers]
+    assert_equal expectation[:entres], menu[:entres]
+    assert_equal expectation[:desserts], menu[:desserts]
   end
   def test_ratio_of_dish_type_to_total
     @potluck.add_dish(@couscous_salad)
@@ -67,5 +67,5 @@ class PotluckTest < Minitest::Test
     assert_equal 50.0, @potluck.ratio(:appetizer)
     assert_equal 33.3, @potluck.ratio(:entre)
     assert_equal 16.6, @potluck.ratio(:dessert)
-  end    
+  end
 end

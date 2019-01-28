@@ -7,7 +7,7 @@ class DishTest < Minitest::Test
     @dishes = [
       Dish.new("Couscous Salad", :appetizer),
       Dish.new("Chips and Dip", :appetizer),
-      Dish.new("Lasagne",:entree)
+      Dish.new("Lasagne",:entre)
     ]
   end
   def test_dish_exists
@@ -19,6 +19,6 @@ class DishTest < Minitest::Test
     assert_equal "Chips and Dip", @dishes[1].name
     assert_equal :appetizer, @dishes[1].category
     assert_equal "Lasagne", @dishes[2].name
-    assert_equal :entree, @dishes[2].category
+    assert_equal :entre, @dishes[2].category
   end
 end
